@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+
+# Local verifier workspace (captures, state, reports are per-user evidence, never committed)
+/data/
+/state/
+/reports/
+/workspace/
+*.zip
+.env
+.DS_Store

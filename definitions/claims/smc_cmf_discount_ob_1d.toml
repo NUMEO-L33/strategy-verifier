@@ -1,0 +1,18 @@
+[claim]
+family = "smc_cmf_discount_ob_1d"
+direction = "Long only on daily bars: enter when price re-enters a confirmed bullish order block while the close is in the discount half of the recent range and Chaikin Money Flow over 20 bars is above zero; there is no short side. Second pre-registered look at the SMC + CMF setup, on the daily timeframe."
+data = ["klines"]
+conditions = [
+  "A down bar's high-low band becomes a bullish order block once a later bar within 6 bars rises at least the down bar's range above its high.",
+  "The close re-enters that order-block band from outside it.",
+  "The close is below the midpoint of the trailing 50-bar high-low range.",
+  "Chaikin Money Flow over the trailing 20 bars is above zero.",
+]
+
+[registration]
+engine = "graph_v1"
+definition = "definitions/smc_cmf_discount_ob_1d.toml"
+explore = "2019-09-01..2024-12-31"
+confirm = "2025-01-01..2026-06-30"
+markets = ["BTCUSDT"]
+bars_note = "Binance UM 1d klines converted with --bar-path ohlc. Daily timeframe; outcome band +/-5% over a 120-event (30-day) horizon. Second look after the 2h family showed no edge."

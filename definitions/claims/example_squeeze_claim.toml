@@ -1,0 +1,11 @@
+# Admissible example: the squeeze family restated as a user claim.
+[claim]
+family = "squeeze_play_trend"
+summary = "Two-average squeeze breakout traded only with the slow trend."
+direction = "Long when the close sits above both averages and the 200 average exceeds its value 12 bars earlier; short on the mirror; no trend, no trade."
+data = ["trades", "klines"]
+conditions = [
+  "The normalized gap between the 20 and 200 averages stays at or below sigma for at least 4 consecutive bars.",
+  "The close exits beyond both averages on the trend side by at least sigma.",
+  "At least 20 bars have passed since the previous event.",
+]

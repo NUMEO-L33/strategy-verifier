@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strategy-verifier"
+version = "1.0.0"
+description = "Pre-registered, calibrated verification of mechanical trading rules: does a rule have real edge, or is it a coin flip?"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "All rights reserved" }
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+verifier = "strategy_verifier.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+strategy_verifier = ["product_resources/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

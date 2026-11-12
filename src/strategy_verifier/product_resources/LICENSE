@@ -1,0 +1,38 @@
+Proprietary License (All Rights Reserved)
+
+Copyright (c) 2026. All rights reserved.
+
+1. Grant. Subject to a separate purchase or written authorization,
+   the licensee receives a personal, non-exclusive, non-transferable
+   right to install and run this software for its stated purpose:
+   the statistical adjudication of the licensee's own mechanical
+   trading claims against historical public market data.
+
+2. Restrictions. No redistribution, sublicensing, resale, public
+   hosting, or provision of the software or substantial portions of
+   it to third parties. No removal of boundary, disclaimer, or
+   equation-stamp text from outputs.
+
+3. No advice. The software provides no investment advice and no
+   trading signals. Outputs are past-tense statistical statements
+   under a registered bar. See docs/DISCLAIMER.md, which is
+   incorporated into this license.
+
+4. No profit claims. The licensee shall not present any output,
+   including a CONFIRMED verdict, as a guarantee, prediction, or
+   endorsement of future returns, in marketing or otherwise.
+
+5. No warranty; no liability. The software is provided as is. To the
+   maximum extent permitted by law, the authors disclaim all
+   warranties and all liability for any losses, including trading
+   losses, arising from use of the software or its outputs.
+
+6. Termination. Breach of sections 2 through 4 terminates the
+   license immediately.
+
+--- 한국어 요약 (본문이 우선한다) ---
+구매자 1인에 대한 비독점·양도불가 사용권. 재배포·재판매·호스팅 금지.
+출력물의 경계·면책·등식 문구 제거 금지. 어떤 출력도 투자 자문이나
+신호가 아니며, CONFIRMED 를 수익 보장처럼 인용하는 행위를 금지한다.
+무보증이며 매매 손실을 포함한 손해에 책임지지 않는다. 2~4항 위반 시
+사용권은 즉시 종료된다.

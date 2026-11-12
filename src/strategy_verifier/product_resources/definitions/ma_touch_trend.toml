@@ -1,0 +1,64 @@
+# Composer demo: written purely in TOML, no module behind it.
+# Trend by two averages; the event is the close touching the fast
+# average inside the trend, spaced by the gate; stride controls ride
+# the same trend bars.
+family = "ma_touch_trend"
+engine = "graph_v1"
+
+[frame]
+bar_seconds = 900
+
+[params]
+delta = "0.0015"
+
+[[series]]
+name = "fast"
+primitive = "sma"
+input = "close"
+period = 20
+
+[[series]]
+name = "slow"
+primitive = "sma"
+input = "close"
+period = 200
+
+[[series]]
+name = "slow_prior"
+primitive = "lag"
+input = "slow"
+k = 12
+
+[[series]]
+name = "touch_gap"
+primitive = "distance"
+a = "close"
+b = "fast"
+denominator = "close"
+
+[[conditions]]
+name = "near_fast"
+type = "compare"
+left = "touch_gap"
+op = "<="
+right = "delta"
+
+[direction]
+long_when = ["close > slow", "slow > slow_prior"]
+short_when = ["close < slow", "slow < slow_prior"]
+
+[event]
+when = ["near_fast"]
+gate_bars = 20
+
+[controls]
+stride = 37
+offset = 11
+min_distance_bars = 20
+
+[outcomes]
+horizons = [200000, 1000000, 3000000]
+threshold_pcts = ["0.005", "0.01", "0.02"]
+
+[calibrate]
+series = "touch_gap"

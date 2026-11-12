@@ -1,0 +1,71 @@
+# Quickstart demo: a tiny synthetic capture ships beside this rule.
+# Measure the pair right after init to walk the pipeline once:
+#   verifier verify-run --definition definitions/demo_quickstart.toml \
+#     --input data/captures/demo-900s-1.jsonl --input-session-mode single
+family = "demo_quickstart"
+engine = "graph_v1"
+
+[frame]
+bar_seconds = 900
+
+[params]
+k = "1"
+
+[[series]]
+name = "slow"
+primitive = "sma"
+input = "close"
+period = 3
+
+[[series]]
+name = "slow_prior"
+primitive = "lag"
+input = "slow"
+k = 1
+
+[[series]]
+name = "fast"
+primitive = "sma"
+input = "close"
+period = 2
+
+[[conditions]]
+name = "wick_long"
+type = "ratio_compare"
+a = "lower_wick"
+b = "body_abs"
+scale = "body_abs"
+op = ">="
+right = "k"
+
+[[conditions]]
+name = "wick_short"
+type = "ratio_compare"
+a = "upper_wick"
+b = "body_abs"
+scale = "body_abs"
+op = ">="
+right = "k"
+
+[[conditions]]
+name = "gate"
+type = "side_gate"
+long_when = ["wick_long"]
+short_when = ["wick_short"]
+
+[direction]
+long_when = ["close < slow", "slow < slow_prior"]
+short_when = ["close > slow", "slow > slow_prior"]
+
+[event]
+when = ["gate"]
+gate_bars = 2
+
+[controls]
+stride = 50
+offset = 1
+min_distance_bars = 2
+
+[outcomes]
+horizons = [8]
+threshold_pcts = ["0.004"]

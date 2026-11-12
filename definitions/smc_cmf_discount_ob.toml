@@ -1,0 +1,83 @@
+family = "smc_cmf_discount_ob"
+engine = "graph_v1"
+
+[frame]
+bar_seconds = 7200
+
+[params]
+zero = "0"
+half = "0.5"
+
+[[series]]
+name = "cmf"
+primitive = "cmf"
+period = 20
+
+[[series]]
+name = "lo"
+primitive = "rolling_min"
+input = "low"
+period = 50
+
+[[series]]
+name = "hi"
+primitive = "rolling_max"
+input = "high"
+period = 50
+
+[[series]]
+name = "num"
+primitive = "distance"
+a = "close"
+b = "lo"
+denominator = "close"
+
+[[series]]
+name = "den"
+primitive = "distance"
+a = "hi"
+b = "lo"
+denominator = "close"
+
+[[series]]
+name = "position"
+primitive = "ratio"
+a = "num"
+b = "den"
+
+[[conditions]]
+name = "cmf_bull"
+type = "compare"
+left = "cmf"
+op = ">"
+right = "zero"
+
+[[conditions]]
+name = "discount"
+type = "compare"
+left = "position"
+op = "<"
+right = "half"
+
+[[conditions]]
+name = "ob_reentry"
+type = "order_block"
+push_window = 6
+displacement = "1.0"
+
+[direction]
+long_when = ["ob_reentry", "cmf_bull", "discount"]
+short_when = ["low > high"]
+
+[event]
+when = ["ob_reentry", "cmf_bull", "discount"]
+gate_bars = 1
+
+[controls]
+stride = 5
+offset = 0
+min_distance_bars = 3
+
+[outcomes]
+horizons = [240]
+threshold_pcts = ["0.01"]

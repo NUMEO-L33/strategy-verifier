@@ -1,0 +1,82 @@
+# Session A demo: candle anatomy + side-selected conditions, pure TOML.
+# In a downtrend, a bar whose lower wick dominates its body claims a
+# long reversal; the mirror with the upper wick claims a short.
+family = "wick_reversal"
+engine = "graph_v1"
+
+[frame]
+bar_seconds = 900
+
+[params]
+k = "1"
+min_range = "0.002"
+
+[[series]]
+name = "slow"
+primitive = "sma"
+input = "close"
+period = 200
+
+[[series]]
+name = "slow_prior"
+primitive = "lag"
+input = "slow"
+k = 12
+
+[[series]]
+name = "range_pct"
+primitive = "distance"
+a = "high"
+b = "low"
+denominator = "close"
+
+[[conditions]]
+name = "range_ok"
+type = "compare"
+left = "range_pct"
+op = ">="
+right = "min_range"
+
+[[conditions]]
+name = "wick_long"
+type = "ratio_compare"
+a = "lower_wick"
+b = "body_abs"
+scale = "body_abs"
+op = ">="
+right = "k"
+
+[[conditions]]
+name = "wick_short"
+type = "ratio_compare"
+a = "upper_wick"
+b = "body_abs"
+scale = "body_abs"
+op = ">="
+right = "k"
+
+[[conditions]]
+name = "wick_gate"
+type = "side_gate"
+long_when = ["wick_long"]
+short_when = ["wick_short"]
+
+[direction]
+long_when = ["close < slow", "slow < slow_prior"]
+short_when = ["close > slow", "slow > slow_prior"]
+
+[event]
+when = ["range_ok", "wick_gate"]
+gate_bars = 20
+
+[controls]
+stride = 37
+offset = 11
+min_distance_bars = 20
+
+[outcomes]
+horizons = [200000, 1000000, 3000000]
+threshold_pcts = ["0.005", "0.01", "0.02"]
+
+[calibrate]
+series = "range_pct"
