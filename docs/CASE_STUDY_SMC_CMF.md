@@ -1,9 +1,9 @@
-# Case Study: A Paid "SMC + CMF" Strategy, Verified
+# Case Study: An "SMC + CMF" Trading Strategy, Verified
 
-A trading strategy sold on YouTube claimed a **200% return** and a
-**1.58 profit index** on Bitcoin. This is the record of putting it
-through the verifier — rule sealed before any data was seen, measured
-against a coin, and judged on a sample large enough to mean something.
+This is the record of putting a trading strategy — Smart Money Concepts
+order blocks plus Chaikin Money Flow, on Bitcoin — through the verifier:
+rule sealed before any data was seen, measured against a coin, and
+judged on a sample large enough to mean something.
 
 **Verdict: NOT_CONFIRMED.** Across three pre-registered looks the rule
 never separated from a coin flip. The one encouraging result (59% on
@@ -12,7 +12,7 @@ markets.
 
 ## The rule, made mechanical
 
-The seller's description: *go long when a blue (bullish) order block
+The strategy as stated: *go long when a blue (bullish) order block
 sits in the discount zone and Chaikin Money Flow over 20 bars is above
 zero.* Each phrase became a graph_v1 building block
 (full design: [smc_cmf_strategy_design.md](smc_cmf_strategy_design.md)):
@@ -24,9 +24,8 @@ zero.* Each phrase became a graph_v1 building block
 | Blue order block | `order_block` condition: a down bar becomes a block once price pushes ≥ 1× its range above it within 6 bars; fires when the close re-enters the block |
 | Outcome | favorable if price touches +band before −band within the horizon |
 
-The seller's numbers were deliberately **not** a target to reproduce:
-a backtest on a self-chosen window is exactly the kind of claim this
-tool exists to test.
+No reported backtest figure was used as a target. The only question
+was whether the rule, once sealed, beats a coin.
 
 ## Three sealed looks
 

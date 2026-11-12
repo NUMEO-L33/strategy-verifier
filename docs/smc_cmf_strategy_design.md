@@ -2,16 +2,15 @@
 
 Purpose: put the owner's SMC + CMF strategy through the verifier's
 pre-registration path (claim -> register -> measure -> judge), so its
-edge is judged independently rather than taken from the seller's
-backtest.
+edge is judged independently rather than taken from a backtest on a
+chosen window.
 
-Source: a YouTube SMC + CMF strategy. Bitcoin two-hour bars. Long when
+Source: an SMC + CMF trading strategy. Bitcoin two-hour bars. Long when
 a blue order block sits in the discount zone and CMF over twenty bars
 is above zero; exit when price breaks below the most recent blue order
-block. The seller reports 200% return and a 1.58 profit index over a
-self-chosen window. Those numbers are NOT the target of reproduction —
-a seller's own backtest on a chosen window is exactly the kind of claim
-this tool exists to test. We rebuild the rule from scratch on
+block. No reported backtest figure is the target of reproduction — a
+backtest on a chosen window is exactly the kind of claim this tool
+exists to test. We rebuild the rule from scratch on
 pre-sealed windows and let the verdict fall where it falls.
 
 ## Three pillars

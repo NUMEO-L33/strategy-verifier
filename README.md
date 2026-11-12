@@ -5,8 +5,8 @@
 Strategy Verifier takes any mechanical trading rule ("*when X, go
 long/short*"), seals it before looking at the data, measures it on
 historical market data, and judges it against a coin with a confidence
-interval. It is built to say **"no"** honestly — because most rules,
-especially the ones that are sold, are patterns found in noise.
+interval. It is built to say **"no"** honestly — because most rules are
+patterns found in noise.
 
 ```
 claim → triage → register (seal) → explore → freeze → confirm → verdict → certificate
@@ -24,8 +24,8 @@ claim → triage → register (seal) → explore → freeze → confirm → verd
 검증 시스템입니다. 규칙을 데이터를 보기 전에 봉인(사전등록)하고, 과거
 시세로 측정한 뒤, 동전(50%) 대비 신뢰구간으로 판정합니다. 판정 계기
 자체도 "답을 아는 데이터"로 검증했습니다(심은 우위 → 92%, 노이즈 →
-약 50%). 실제로 유튜브에서 판매되던 전략(수익률 200% 주장)을 세 번의
-사전등록 검증에 걸었고, 결론은 **우위 없음(NOT_CONFIRMED)** 이었습니다
+약 50%). 실제 매매 전략(SMC + CMF)을 세 번의 사전등록 검증으로
+판정했고, 결론은 **우위 없음(NOT_CONFIRMED)** 이었습니다
 → [사례 연구](docs/CASE_STUDY_SMC_CMF.md).
 
 ## Why this exists
@@ -42,10 +42,10 @@ verifier forces the scientific method onto trading ideas:
    sample of at least 100).
 4. **Judge against a coin** — not against hope.
 
-## Case study: a paid strategy, verified
+## Case study: a trading strategy, verified
 
-A YouTube "Smart Money Concepts + Chaikin Money Flow" strategy claimed a
-200% return. Rebuilt mechanically and run through three sealed looks:
+A "Smart Money Concepts + Chaikin Money Flow" trading strategy, rebuilt
+mechanically and run through three sealed looks:
 
 | Look | Sample | Favorable | Wilson 95% |
 |---|---:|---:|---|

@@ -9,7 +9,7 @@ the true boundary: any technique expressible as when-plus-direction
 is verifiable; anything that refuses that form is not a technique
 but a feeling, and the product must say so kindly and specifically.
 Rejection with reasons is therefore a first-class feature: the triage
-this project performed by hand on four paid sources becomes the
+this project performed by hand on four outside sources becomes the
 product's front door.
 
 ## The Primitive Algebra (Derived, Not Imagined)
